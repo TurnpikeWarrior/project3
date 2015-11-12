@@ -1,4 +1,7 @@
 log/*.log
 tmp/**/*
+<<<<<<< HEAD
 config/database.yml
 db/*.rb
+=======
+>>>>>>> d922f0e6b297587b12f831950d817729b44e086a
