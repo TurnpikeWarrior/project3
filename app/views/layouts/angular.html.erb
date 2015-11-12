@@ -4,15 +4,16 @@
   <title>SantaFunke</title>
   <%= stylesheet_link_tag    'angular', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <!-- Compiled and minified CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css">
    <!-- Angular -->
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js" charset="utf-8"></script>
-   <!-- Jquery and Materialize.js -->
-   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+
 </head>
-<body>
+<body ng-controller="AppCtrl">
   <header>
     <nav>
         <!-- Christmas Countdown Start -->
@@ -190,6 +191,36 @@
       </div>
       <!-- all_toys -->
 
+      <div ng-controller="AppCtrl" ng-cloak="" class="buttondemoBasicUsage" ng-app="MyApp">
+        <md-content>
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+              <md-button class="md-fab" aria-label="Eat cake">
+                  <md-icon md-svg-src="images/cake.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-fab md-primary" aria-label="Use Android">
+                <md-icon md-svg-src="images/android.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-fab" ng-disabled="true" aria-label="Comment">
+                  <md-icon md-svg-src="images/ic_comment_24px.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
+                  <md-icon md-svg-src="images/ic_people_24px.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-fab md-mini" aria-label="Eat cake">
+                  <md-icon md-svg-src="images/cake.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+                <md-icon md-svg-src="images/android.svg" style="color: greenyellow;"></md-icon>
+              </md-button>
+            <div class="label">FAB</div>
+          </section>
+        </md-content>
+      </div>
 
     <!-- createToy start -->
     <h5>Create your Toy!</h5>
