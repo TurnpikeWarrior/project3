@@ -6,6 +6,7 @@ var currentUserId;
 var currentUserName;
 var currentUserAddress;
 var kidzAddresses = [];
+var kidzNamez = []; // have to store these, too, for popups.
 
 // this will allow us to execute functions after the Angular template has been completely loaded.. got it from: http://gsferreira.com/archive/2015/03/angularjs-after-render-directive/
 SantaFunke.directive('afterRender', ['$timeout', function ($timeout) {
@@ -68,10 +69,16 @@ SantaFunke.controller('UserController', ['$http', '$scope', function($http, $sco
 
     controller.createUser = function(){
       controller.fullAddress = controller.address + " " + controller.city + " " + controller.state + " " + controller.postalCode;
+
+      // some addresses are being saved as "undefined undefined undefined undefined" in db if the fields in the signup form are left blank. going to set it to something else, here, if that is the case--otherwise the maps will break.
+      if (controller.fullAddress === "undefined undefined undefined undefined") {
+        controller.fullAddress = "101 St Nicholas Dr, North Pole, AK 99705";
+      }
+
       $http.post('/users', {
         authenticity_token: controller.authenticity_token,
         user: {
-          email: controller.email,
+          email: controller.email.toLowerCase(),
           password: controller.password,
           name: controller.name,
           age: controller.age,
@@ -114,8 +121,10 @@ SantaFunke.controller('ChildrenController', ['$http', function($http){
     controller.children = data.data.children;
     for (var i = 0; i < controller.children.length; i++) {
       kidzAddresses.push(controller.children[i].address);
+      kidzNamez.push(controller.children[i].name);
     }
     console.log("inside of ChildrenController callback, kidzAddresses is now: ", kidzAddresses);
+    console.log("kidzNamez is: ", kidzNamez);
   }, function(error){
     //what should we do with the errors?
   });
@@ -154,11 +163,11 @@ SantaFunke.controller('MapController', ['$scope', '$http', function($scope, $htt
       zoom: 15,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+    };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
     controller.codeAddress(currentUserAddress);
-  }
+  };
 
   this.initializeMapAndMarkersInElfView = function() {
     // console.log("testing in initializeMapsInElfView, $scope.$parent is:", $scope.$parent);
@@ -167,26 +176,40 @@ SantaFunke.controller('MapController', ['$scope', '$http', function($scope, $htt
     // console.log("and $scope.$parent.controller is: ", $scope.$parent.controller);
     // var kidzAddresses = [];
     geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(90, 0);
     var mapOptions = {
       zoom: 4,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+    };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
     // for (var i = 0; i < children.length; i++) {
     //   kidzAddresses.push(children[i].address);
     // }
 
-    controller.codeAddress(kidzAddresses);
-  }
+    controller.codeAddress(kidzAddresses, kidzNamez);
+  };
 
-  this.codeAddress = function(addresses) {
+  this.codeAddress = function(addresses, names) {
+    // var name;
+    // var index;
     for (var j = 0; j < addresses.length; j++) {
+      // var index = j;
+      // console.log("index: ", index);
+      // var name = names[index];
+      // console.log("name: ", name);
       geocoder.geocode( { 'address': addresses[j]}, function(results, status) {
+        // name = names[j];
+        // console.log("name inside of geocode function: ", name);
         if (status == google.maps.GeocoderStatus.OK) {
           map.setCenter(results[0].geometry.location);
+          // var name = names[j];
+          // Can't get the dang name to work, going to put in a goofy message instead..
+          console.log("about to add popups..");
+          var popup = new google.maps.InfoWindow({
+            content: "A child lives here! But, for security reasons, Santa obviously can't tell you who.."
+          });
           var marker = new google.maps.Marker({
               map: map,
               position: results[0].geometry.location,
@@ -196,12 +219,15 @@ SantaFunke.controller('MapController', ['$scope', '$http', function($scope, $htt
               //also an option:
               // icon: "http://forums.childrenwithdiabetes.com/images/smilies/catchu.gif"
           });
+          marker.addListener('click', function() {
+            popup.open(map, marker);
+          });
         } else {
           alert("Santa could not find you for the following reason: " + status);
         }
       });
     }
-  }
+  };
 
 }]);
 
