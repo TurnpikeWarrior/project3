@@ -20,53 +20,53 @@
 
 # create some children..
 
-10.times do |child|
-  child = Child.new
-  child.name = Faker::Name.name
-  child.email = Faker::Internet.email
-  child.password_digest = Faker::Internet.password(8)
-  child.address = Faker::Address.street_address
-  child.age = Faker::Number.number(2)
-
-  child.save
-end
-
-10.times do |elf|
-  elf = Elf.new
-  elf.name = Faker::Name.name
-  elf.email = Faker::Internet.email
-  elf.password_digest = Faker::Internet.password(8)
-  elf.address = Faker::Address.street_address
-  elf.age = Faker::Number.number(2)
-
-  elf.save
-end
-
-10.times do |toy|
-  toy = Toy.new
-  toy.name = Faker::Company.buzzword
-  toy.description = Faker::Company.catch_phrase
-  toy.value = Faker::Number.number(3)
-
-  toy.save
-end
-
-5.times do |present|
-  present = Present.new
-  present.child_id = Faker::Number.number(1).to_i + 1
-  present.elf_id = Faker::Number.number(1).to_i + 1
-  present.toy_id = Faker::Number.number(1).to_i + 1
-
-  present.save
-end
-
-5.times do |judgment|
-  judgment = Judgment.new
-  judgment.child_id = Faker::Number.number(1).to_i + 1
-  judgment.elf_id = Faker::Number.number(1).to_i + 1
-  judgment.description = Faker::Company.catch_phrase
-  judgment.naughty = true;
-  judgment.qualifying_adverb = Faker::Company.buzzword
-
-  judgment.save
-end
+# 10.times do |child|
+#   child = Child.new
+#   child.name = Faker::Name.name
+#   child.email = Faker::Internet.email
+#   child.password_digest = Faker::Internet.password(8)
+#   child.address = Faker::Address.street_address
+#   child.age = Faker::Number.number(2)
+#
+#   child.save
+# end
+#
+# 10.times do |elf|
+#   elf = Elf.new
+#   elf.name = Faker::Name.name
+#   elf.email = Faker::Internet.email
+#   elf.password_digest = Faker::Internet.password(8)
+#   elf.address = Faker::Address.street_address
+#   elf.age = Faker::Number.number(2)
+#
+#   elf.save
+# end
+#
+# 10.times do |toy|
+#   toy = Toy.new
+#   toy.name = Faker::Company.buzzword
+#   toy.description = Faker::Company.catch_phrase
+#   toy.value = Faker::Number.number(3)
+#
+#   toy.save
+# end
+#
+# 5.times do |present|
+#   present = Present.new
+#   present.child_id = Faker::Number.number(1).to_i + 1
+#   present.elf_id = Faker::Number.number(1).to_i + 1
+#   present.toy_id = Faker::Number.number(1).to_i + 1
+#
+#   present.save
+# end
+#
+# 5.times do |judgment|
+#   judgment = Judgment.new
+#   judgment.child_id = Faker::Number.number(1).to_i + 1
+#   judgment.elf_id = Faker::Number.number(1).to_i + 1
+#   judgment.description = Faker::Company.catch_phrase
+#   judgment.naughty = true;
+#   judgment.qualifying_adverb = Faker::Company.buzzword
+#
+#   judgment.save
+# end
