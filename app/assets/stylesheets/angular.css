@@ -2,6 +2,10 @@
   float: right;
 }*/
 
+body {
+  margin-bottom: 100px;
+}
+
 .buttondemoBasicUsage section {
   background: #f7f7f7;
   border-radius: 3px;
@@ -57,7 +61,8 @@ h1 {
 }
 
 .highlight{
-  width: 50%
+  width: 50%;
+  text-align: center;
   /* this is set to fifty percent so we can put a map next to the presents */
 }
 
@@ -73,4 +78,68 @@ marquee {
 
 .child {
   border: 2px solid black;
+}
+
+#map {
+  height: 300px;
+  width: 500px;
+  box-shadow: 3px 3px 10px gray;
+}
+
+/*-------------------*/
+
+h1, h3, h2{
+
+  text-align: center;
+
+}
+
+.btn1{
+  background-color: #26a69a ;
+  height: 43px;
+  color: white;
+}
+
+.btn2{
+  background-color: #ef9a9a ;
+  height: 43px;
+  color: white;
+}
+.md-button:not([disabled]):hover {
+  background-color: #ff3d00;
+}
+.snow{
+background-image: url('http://i.giphy.com/4M6xlFxZskH8A.gif');
+ background-size: cover;}
+
+ .countdown{
+   background-color: red;
+ }
+
+#map{
+  float: right;
+}
+
+nav{
+  background-color: #ef9a9a;
+}
+
+.elf{
+  background-color: #26a69a;
+}
+
+.btn3{
+
+  background-color: #ef9a9a ;
+  height: 34px;
+  color: white;
+}
+
+#mapmap{
+  margin-right: 0px;
+  text-align: right;
+}
+
+.area{
+position: relative;
 }

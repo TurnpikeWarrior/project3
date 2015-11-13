@@ -1,7 +1,13 @@
 log/*.log
 tmp/**/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 config/database.yml
 db/*.rb
 =======
 >>>>>>> d922f0e6b297587b12f831950d817729b44e086a
+=======
+=======
+config/database.yml
+>>>>>>> 2e25b5140101658a60f5cc4e6a79bacad50ff1fb
+>>>>>>> 276591f1728224657fdbab53d8425e3bd0a48a21
